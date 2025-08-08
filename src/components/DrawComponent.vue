@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h2>🎯 Tirage au sort</h2>
+    <h2>🎯 Tirage au sort Jeu d'invisibilité</h2>
 
     <label for="userSelect">Sélectionnez votre nom :</label>
     <select v-model="selectedUser" id="userSelect" :disabled="nameLocked">
