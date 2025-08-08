@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       users: [
-        "Alice","Bob","Charlie","David","Emma","Fanny","Georges",
-        "Hugo","Isabelle","Jean","Karim","Laura","Marc","Nina"
+        "Aristide","Hermann","Wilfried","Fabrice","Cinthya","Mireille","Rosine",
+        "Clara","Tonton Clovis","Cheryl"
       ],
       selectedUser: "",
       result: "",
