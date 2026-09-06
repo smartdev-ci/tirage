@@ -341,9 +341,19 @@ export default defineComponent({
         if (drawsError) throw drawsError;
 
         const pickedSet = new Set((allDraws || []).map(d => d.drawn));
-        const candidates = this.users.filter(
-          user => user !== this.selectedUser && !pickedSet.has(user)
-        );
+        const forbiddenPairs = [
+          ['Aristide', 'Paulin'],
+          ['Paulin', 'Aristide']
+        ];
+        const candidates = this.users.filter(user => {
+          if (user === this.selectedUser) return false;
+          if (pickedSet.has(user)) return false;
+          for (const [a, b] of forbiddenPairs) {
+            if (this.selectedUser === a && user === b) return false;
+            if (this.selectedUser === b && user === a) return false;
+          }
+          return true;
+        });
 
         if (candidates.length === 0) {
           alert("Aucun nom disponible à tirer !");
