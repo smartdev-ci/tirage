@@ -20,32 +20,18 @@
 
         <div class="login-card">
           <label class="login-label" for="loginCode">Code secret</label>
-          <input
-            id="loginCode"
-            v-model="loginCode"
-            class="login-input"
-            type="password"
-            placeholder="Entrez votre code secret"
-            autocomplete="off"
-          />
+          <input id="loginCode" v-model="loginCode" class="login-input" type="password"
+            placeholder="Entrez votre code secret" autocomplete="off" />
 
           <p v-if="authError" class="auth-error">{{ authError }}</p>
 
-          <button
-            @click="login"
-            :disabled="!canLogin"
-            class="btn btn-primary login-btn"
-          >
+          <button @click="login" :disabled="!canLogin" class="btn btn-primary login-btn">
             🔐 Accéder au tirage
           </button>
         </div>
       </div>
 
-      <div
-        v-else-if="!hasPlayed && !rolling && !confirmVisible"
-        key="selection"
-        class="main-container"
-      >
+      <div v-else-if="!hasPlayed && !rolling && !confirmVisible" key="selection" class="main-container">
         <header class="app-header">
           <div class="header-icon">🎩</div>
           <h1 class="app-title">LISTE DES PARTICIPANTS</h1>
@@ -53,23 +39,14 @@
 
         <div class="actions-bar">
           <p class="action-hint">Cliquez ici pour effectuer votre tirage</p>
-          <button
-            @click="openConfirm"
-            :disabled="!selectedUser"
-            class="btn btn-primary"
-          >
+          <button @click="openConfirm" :disabled="!selectedUser" class="btn btn-primary">
             🎲 Je suis prêt
           </button>
         </div>
 
         <div class="cards-grid">
-          <div
-            v-for="user in users"
-            :key="user"
-            class="user-card"
-            :class="selectedUser === user ? 'selected' : ''"
-            @click="selectUser(user)"
-          >
+          <div v-for="user in users" :key="user" class="user-card" :class="selectedUser === user ? 'selected' : ''"
+            @click="selectUser(user)">
             <div class="card-avatar">{{ user.charAt(0) }}</div>
             <div class="card-name">{{ user }}</div>
           </div>
@@ -81,11 +58,7 @@
         <span class="rolling-name">Tirage en cours...</span>
       </div>
 
-      <div
-        v-else-if="selectedUser && result && !rolling"
-        key="result-only"
-        class="result-only-view"
-      >
+      <div v-else-if="selectedUser && result && !rolling" key="result-only" class="result-only-view">
         <p class="result-only-text">Votre tirage a été effectué</p>
         <button @click="revealResult = true" class="btn btn-primary">
           👁️ Voir mon tirage
@@ -100,23 +73,14 @@
 
         <div class="actions-bar">
           <p class="action-hint">Cliquez ici pour effectuer votre tirage</p>
-          <button
-            @click="openConfirm"
-            :disabled="!selectedUser"
-            class="btn btn-primary"
-          >
+          <button @click="openConfirm" :disabled="!selectedUser" class="btn btn-primary">
             🎲 Je suis prêt
           </button>
         </div>
 
         <div class="cards-grid">
-          <div
-            v-for="user in users"
-            :key="user"
-            class="user-card"
-            :class="selectedUser === user ? 'selected' : ''"
-            @click="selectUser(user)"
-          >
+          <div v-for="user in users" :key="user" class="user-card" :class="selectedUser === user ? 'selected' : ''"
+            @click="selectUser(user)">
             <div class="card-avatar">{{ user.charAt(0) }}</div>
             <div class="card-name">{{ user }}</div>
           </div>
@@ -470,7 +434,8 @@ body {
   margin: 0 auto;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -502,8 +467,15 @@ body {
 }
 
 @keyframes hatFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
 }
 
 .loader-text {
@@ -538,6 +510,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-bottom: 32px;
+  margin-top: 20px;
 }
 
 .user-card {
@@ -597,6 +570,7 @@ body {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: center;
+  flex-direction: column;
 }
 
 .btn {
@@ -611,6 +585,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .btn-primary {
@@ -666,8 +642,13 @@ body {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .rolling-name {
@@ -842,6 +823,7 @@ body {
     opacity: 0;
     transform: scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
