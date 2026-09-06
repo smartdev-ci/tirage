@@ -20,8 +20,8 @@ cp .env.example .env.local
 
 4. Mettre à jour `.env.local` :
 ```env
-DRAW_SUPABASE_URL="https://your-project.supabase.co"
-DRAW_SUPABASE_PUBLISHABLE_KEY="your-publishable-key"
+VITE_SUPABASE_URL="https://your-project.supabase.co"
+VITE_SUPABASE_PUBLISHABLE_KEY="your-publishable-key"
 ```
 
 ## Participants
