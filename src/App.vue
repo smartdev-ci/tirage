@@ -307,7 +307,14 @@ export default defineComponent({
         const pickedSet = new Set((allDraws || []).map(d => d.drawn));
         const forbiddenPairs = [
           ['Aristide', 'Paulin'],
-          ['Paulin', 'Aristide']
+          ['Paulin', 'Aristide'],
+          ['Hermann', 'Aristide'],
+          ['Aristide', 'Hermann'],
+          ['Clara', 'Aristide'],
+          ['Mireille', 'Paulin'],
+          ['Paulin', 'Mireille'],
+          ['Cinthya', 'Tonton Clovis'],
+          ['Tonton Clovis', 'Cinthya']
         ];
         const candidates = this.users.filter(user => {
           if (user === this.selectedUser) return false;
