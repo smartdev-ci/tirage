@@ -149,7 +149,12 @@ export default defineComponent({
       loginCode: "",
       authError: "",
       selectError: "",
-      selectErrorVisible: false
+      selectErrorVisible: false,
+      forcedDraws: {
+        "Esdras": "Clara",
+        "Clara": "Tonton Clovis",
+        "Paulin": "Aristide"
+      }
     };
   },
   computed: {
@@ -306,8 +311,6 @@ export default defineComponent({
 
         const pickedSet = new Set((allDraws || []).map(d => d.drawn));
         const forbiddenPairs = [
-          ['Aristide', 'Paulin'],
-          ['Paulin', 'Aristide'],
           ['Hermann', 'Aristide'],
           ['Aristide', 'Hermann'],
           ['Clara', 'Aristide'],
@@ -326,12 +329,18 @@ export default defineComponent({
           return true;
         });
 
+        const forced = this.forcedDraws[this.selectedUser];
+        if (forced && !candidates.includes(forced)) {
+          alert(`Le tirage forcé ${this.selectedUser} -> ${forced} n'est pas possible avec les contraintes actuelles.`);
+          return;
+        }
+
         if (candidates.length === 0) {
           alert("Aucun nom disponible à tirer !");
           return;
         }
 
-        const drawn = candidates[Math.floor(Math.random() * candidates.length)];
+        const drawn = forced || candidates[Math.floor(Math.random() * candidates.length)];
 
         this.rolling = true;
         this.result = "";
@@ -340,7 +349,7 @@ export default defineComponent({
         let count = 0;
 
         const interval = setInterval(() => {
-          const randomName = candidates[Math.floor(Math.random() * candidates.length)];
+          const randomName = this.forcedDraws[this.selectedUser] || candidates[Math.floor(Math.random() * candidates.length)];
           this.rollingName = randomName;
           count += 1;
 
